@@ -14,11 +14,9 @@ import java.io.IOException;
 @Service
 public class Consumer {
 
-    //@SendTo("out.queue")
     @JmsListener(destination = "amq.test")
     public void receiveWatchInput(String text) throws IOException {
 
-        System.out.println("Consumer2收到的报文为:" + text);
-//        return "return message" + text;
+        System.out.println("consumer received message :" + text);
     }
 }

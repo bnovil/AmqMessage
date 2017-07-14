@@ -23,7 +23,5 @@ dist/
 nbdist/
 .nb-gradle/
 logs/
-log4j2.xml
 application-dev.properties
-application.properties
 sql/generatorConfig.xml
