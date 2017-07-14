@@ -9,10 +9,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * @since: Created on 2017/7/13 16:30.
  */
 @Controller
-public class SendController {
+public class MessageController {
     @RequestMapping("/send")
-    public String welcome() {
+    public String send() {
         return "send";
+    }
+
+    @RequestMapping("/receive")
+    public String receive() {
+        return "receive";
     }
 
 }

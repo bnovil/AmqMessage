@@ -272,8 +272,8 @@ org.activemq.Amq = function() {
 
 		// Send a JMS message to a destination (eg topic://MY.TOPIC).  Message
 		// should be xml or encoded xml content.
-		sendMessage : function(destination, message) {
-			sendJmsMessage(destination, message, 'send');
+		sendMessage : function(destination, message, headers) {
+			sendJmsMessage(destination, message, 'send', headers);
 		},
 
 		// Listen on a channel or topic.

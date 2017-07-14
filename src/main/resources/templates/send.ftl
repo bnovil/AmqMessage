@@ -5,25 +5,28 @@
     <title>amq</title>
 </head>
 <body>
+<div>
+    <input type = "text" id = "inputText">
+    <button onclick="SendFunction()">send message</button>
+</div>
 <div id="show"></div>
+
+<#--ActiveMQ ajax -->
+<script type="text/javascript" src="js/jquery-1.4.2.min.js"></script>
+<script type="text/javascript" src="js/amq_jquery_adapter.js"></script>
+<script type="text/javascript" src="js/amq.js"></script>
+
 <script>
-    "use strict";
-    //    var t1 = new Date().getTime();
+
     function showInfo(str) {
         var t = document.getElementById("show");
         var d = new Date();
         var dt = d + " : "
         t.innerHTML += dt + "<br>" + str + "<br>";
     }
-    showInfo("开始加载");
-    console.log("loading");
-</script>
+    showInfo("start");
 
-<script type="text/javascript" src="js/jquery-1.4.2.min.js"></script>
-<script type="text/javascript" src="js/amq_jquery_adapter.js"></script>
-<script type="text/javascript" src="js/amq.js"></script>
 
-<script type="text/javascript">
     var amq = org.activemq.Amq;
     amq.init({
         uri: 'amq',
@@ -31,22 +34,29 @@
         timeout: 20
     });
 
-    var toReceiver = "hello";
+    /**
+     * Be aware that, by default, messages published via Stomp which include a content-length header will be
+     * converted by ActiveMQ to binary messages, and will not be visible to your web clients
+     * Beginning with ActiveMQ 5.4.0, you can resolve this problem by always setting the amq-msg-type header
+     * to text in messages which will may be consumed by web clients.
+     *
+     * refactor sendMessage in amq.js from
+     * 	sendMessage : function(destination, message) {
+			sendJmsMessage(destination, message, 'send');
+		}
+      to
+     * 	sendMessage : function(destination, message, headers) {
+			sendJmsMessage(destination, message, 'send', headers);
+		}
+     */
+    function SendFunction( ) {
+        var destination = "channel://amq.test";
+        var msgCon = document.getElementById("inputText").value;
+        amq.sendMessage(destination,msgCon,"amq-msg-type='text'");
+        showInfo("send message to queue: " + msgCon);
 
-    amq.sendMessage("channel://amq.test",toReceiver);
-    amq.sendMessage("channel://amq.test","hello world");
-    showInfo("send message");
+    }
 
-//    var myHandler =
-//        {
-//            rcvMessage: function(message)
-//            {
-//                alert("received "+message.content);
-//                showInfo("received " + message.toString());
-//            }
-//        };
-//
-//    amq.addListener("my","channel://amq.test",myHandler.rcvMessage);
 </script>
 
 

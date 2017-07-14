@@ -11,8 +11,8 @@ import org.springframework.boot.web.servlet.ServletComponentScan;
  */
 @SpringBootApplication
 @ServletComponentScan
-public class RongMessageApplication {
+public class AmqMessageApplication {
     public static void main(String[] args) {
-        SpringApplication.run(RongMessageApplication.class, args);
+        SpringApplication.run(AmqMessageApplication.class, args);
     }
 }
