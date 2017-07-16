@@ -3,11 +3,13 @@ package com.lzq.servlet;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Enumeration;
 
 /**
  * @author:lzq
@@ -21,7 +23,14 @@ public class DemoServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
         log.info("==>DemoServlet接受请求");
-        resp.getWriter().write("DemoServlet access success");
+        ServletContext servletContext = this.getServletContext();
+        Enumeration<String> enumeration = servletContext.getInitParameterNames();
+        while (enumeration.hasMoreElements()) {
+            String name = enumeration.nextElement();
+            System.out.println(name);
+            System.out.println(servletContext.getInitParameter(name));
+        }
+        resp.getWriter().write("DemoServlet access success ");
 
     }
 

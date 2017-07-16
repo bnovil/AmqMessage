@@ -24,7 +24,7 @@ public class ServletBean {
         ServletRegistrationBean registrationBean = new ServletRegistrationBean();
         registrationBean.setServlet(new DemoServlet());
         List<String> urlMappings=new ArrayList<String>();
-        urlMappings.add("/demoServlet");
+        urlMappings.add("/demoservlet");
         registrationBean.setUrlMappings(urlMappings);
         return registrationBean;
     }
@@ -41,13 +41,13 @@ public class ServletBean {
     }
 
     // configured in the file application.properties
-//    @Bean
-//    public ServletContextInitializer initializer() {
-//        return new ServletContextInitializer() {
-//            @Override
-//            public void onStartup(ServletContext servletContext) throws ServletException {
-//                servletContext.setInitParameter("org.apache.activemq.brokerURL", "tcp://127.0.0.1:61616");
-//            }
-//        };
-//    }
+    @Bean
+    public ServletContextInitializer initializer() {
+        return new ServletContextInitializer() {
+            @Override
+            public void onStartup(ServletContext servletContext) throws ServletException {
+                servletContext.setInitParameter("org.apache.activemq.brokerURL", "tcp://127.0.0.1:61616");
+            }
+        };
+    }
 }
