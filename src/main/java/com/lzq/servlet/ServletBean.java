@@ -40,7 +40,7 @@ public class ServletBean {
         return registrationBean;
     }
 
-    // configured in the file application.properties
+
     @Bean
     public ServletContextInitializer initializer() {
 //        return new ServletContextInitializer() {
