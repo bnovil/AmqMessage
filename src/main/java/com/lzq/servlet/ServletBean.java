@@ -43,11 +43,14 @@ public class ServletBean {
     // configured in the file application.properties
     @Bean
     public ServletContextInitializer initializer() {
-        return new ServletContextInitializer() {
-            @Override
-            public void onStartup(ServletContext servletContext) throws ServletException {
-                servletContext.setInitParameter("org.apache.activemq.brokerURL", "tcp://127.0.0.1:61616");
-            }
-        };
+//        return new ServletContextInitializer() {
+//            @Override
+//            public void onStartup(ServletContext servletContext) throws ServletException {
+//                servletContext.setInitParameter("org.apache.activemq.brokerURL", "tcp://127.0.0.1:61616");
+//            }
+//        };
+        //lambda
+        return (servletContext)->
+            servletContext.setInitParameter("org.apache.activemq.brokerURL", "tcp://127.0.0.1:61616");
     }
 }

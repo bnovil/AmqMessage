@@ -5,9 +5,7 @@ import org.slf4j.LoggerFactory;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.*;
 import java.io.IOException;
 import java.util.Enumeration;
 
@@ -22,16 +20,17 @@ public class DemoServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
-        log.info("==>DemoServlet接受请求");
+        log.info("DemoServlet received");
+        HttpSession session = req.getSession();
+        session.setAttribute("key", "hello");
         ServletContext servletContext = this.getServletContext();
         Enumeration<String> enumeration = servletContext.getInitParameterNames();
         while (enumeration.hasMoreElements()) {
             String name = enumeration.nextElement();
-            System.out.println(name);
-            System.out.println(servletContext.getInitParameter(name));
+            log.debug("key:{},value:{}", name, servletContext.getInitParameter(name));
         }
         resp.getWriter().write("DemoServlet access success ");
-
+        resp.getWriter().close();
     }
 
     @Override
