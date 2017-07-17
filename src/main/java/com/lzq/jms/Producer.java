@@ -10,7 +10,7 @@ import javax.jms.Destination;
 /**
  * @author lzq
  * @version 1.0
- * @description 消息生产者
+ * @description producer
  * @since 2017/5/10 23:18
  */
 @Service
