@@ -6,10 +6,7 @@ import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import javax.servlet.ServletContext;
-import javax.servlet.ServletException;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 /**
@@ -23,7 +20,7 @@ public class ServletBean {
     public ServletRegistrationBean myServletRegistrationBean() {
         ServletRegistrationBean registrationBean = new ServletRegistrationBean();
         registrationBean.setServlet(new DemoServlet());
-        List<String> urlMappings=new ArrayList<String>();
+        List<String> urlMappings = new ArrayList<>();
         urlMappings.add("/demoservlet");
         registrationBean.setUrlMappings(urlMappings);
         return registrationBean;
@@ -34,7 +31,7 @@ public class ServletBean {
         ServletRegistrationBean registrationBean = new ServletRegistrationBean();
         registrationBean.setServlet(new AjaxServlet());
         registrationBean.setLoadOnStartup(1);
-        List<String> urlMappings=new ArrayList<String>();
+        List<String> urlMappings = new ArrayList<>();
         urlMappings.add("/amq/*");
         registrationBean.setUrlMappings(urlMappings);
         return registrationBean;
@@ -50,7 +47,7 @@ public class ServletBean {
 //            }
 //        };
         //lambda
-        return (servletContext)->
-            servletContext.setInitParameter("org.apache.activemq.brokerURL", "tcp://127.0.0.1:61616");
+        return (servletContext) ->
+                servletContext.setInitParameter("org.apache.activemq.brokerURL", "tcp://127.0.0.1:61616");
     }
 }
