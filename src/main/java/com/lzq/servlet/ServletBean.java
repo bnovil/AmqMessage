@@ -26,7 +26,7 @@ public class ServletBean {
         ServletRegistrationBean registrationBean = new ServletRegistrationBean();
         registrationBean.setServlet(new AjaxServlet());
         registrationBean.setLoadOnStartup(1);
-        List<String> urlMappings=new ArrayList<String>();
+        List<String> urlMappings=new ArrayList<>();
         urlMappings.add("/amq/*");
         registrationBean.setUrlMappings(urlMappings);
         return registrationBean;
