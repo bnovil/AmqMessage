@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>amq</title>
+    <title>send</title>
 </head>
 <body>
 <div>
