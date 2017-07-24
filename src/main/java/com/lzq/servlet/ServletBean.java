@@ -21,7 +21,7 @@ public class ServletBean {
         ServletRegistrationBean registrationBean = new ServletRegistrationBean();
         registrationBean.setServlet(new DemoServlet());
         List<String> urlMappings = new ArrayList<>();
-        urlMappings.add("/demoservlet");
+        urlMappings.add("/demo");
         registrationBean.setUrlMappings(urlMappings);
         return registrationBean;
     }

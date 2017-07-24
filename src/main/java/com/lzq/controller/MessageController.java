@@ -19,5 +19,9 @@ public class MessageController {
     public String receive() {
         return "receive";
     }
+    @RequestMapping("/chat")
+    public String chat() {
+        return "chat";
+    }
 
 }

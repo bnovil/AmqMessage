@@ -17,10 +17,26 @@ import java.util.Enumeration;
 public class DemoServlet extends HttpServlet {
     Logger log = LoggerFactory.getLogger(DemoServlet.class);
 
+    //servlet是线程不安全的 , 多线程共享变量不安全
+    String message;
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
         log.info("DemoServlet received");
+//        局部变量不会被多个线程共享，线程安全
+//        String message;
+        message = req.getParameter("message");
+        System.out.println(Thread.currentThread().getName() + " " + message);
+
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+
+
         HttpSession session = req.getSession();
         session.setAttribute("key", "hello");
         ServletContext servletContext = this.getServletContext();
@@ -29,7 +45,7 @@ public class DemoServlet extends HttpServlet {
             String name = enumeration.nextElement();
             log.debug("key:{},value:{}", name, servletContext.getInitParameter(name));
         }
-        resp.getWriter().write("DemoServlet access success ");
+        resp.getWriter().write("DemoServlet access success, message is " + message);
         resp.getWriter().close();
     }
 
