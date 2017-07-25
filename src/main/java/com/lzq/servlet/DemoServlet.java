@@ -29,11 +29,12 @@ public class DemoServlet extends HttpServlet {
         message = req.getParameter("message");
         System.out.println(Thread.currentThread().getName() + " " + message);
 
-        try {
-            Thread.sleep(5000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+//        try {
+//            Thread.sleep(5000);
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
+        resp.addCookie(new Cookie("test","hello"));
 
 
 
